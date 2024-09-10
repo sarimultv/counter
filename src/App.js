@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from "./components/Container";
+import Controls from "./components/Controls";
+import DisplayCounter from "./components/DisplayCounter";
+import Header from "./components/Header";
+import "./App.css";
+import { useSelector } from "react-redux";
+import PrivacyToggle from "./components/PrivacyToggle";
 
 function App() {
+  const privacy = useSelector((store) => store.privacy);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <div className="px-4 py-5 my-5 text-center">
+        <Header />
+        <div className="col-lg-6 mx-auto">
+          {privacy ? <PrivacyToggle /> : <DisplayCounter />}
+          <Controls />
+        </div>
+      </div>
+    </Container>
   );
 }
 
